@@ -1,28 +1,36 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 17, in script
-    "Beep-beep-beep! The incessant honking outside my window wakes me from my slumber. It wasn’t like I got much sleep anyways."
-Exception: The say screen (or show_function) must return a Text object.
+  File "game/script.rpy", line 158, in script
+    "I checked my wallet to see how much money I had to work with. [money] dollars. Not bad. I’ll see what I can get done."
+KeyError: 'money'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 17, in script
-    "Beep-beep-beep! The incessant honking outside my window wakes me from my slumber. It wasn’t like I got much sleep anyways."
+  File "game/script.rpy", line 158, in script
+    "I checked my wallet to see how much money I had to work with. [money] dollars. Not bad. I’ll see what I can get done."
   File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/ast.py", line 921, in execute
     renpy.exports.say(who, what, *args, **kwargs)
   File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/exports.py", line 1373, in say
     who(what, *args, **kwargs)
-  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 1266, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 927, in do_display
-    display_say(who,
-  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 624, in display_say
-    raise Exception("The say screen (or show_function) must return a Text object.")
-Exception: The say screen (or show_function) must return a Text object.
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 1253, in __call__
+    what = self.prefix_suffix("what", self.what_prefix, what, self.what_suffix)
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 1172, in prefix_suffix
+    return (sub(prefix) + sub(body) + sub(suffix))
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 1152, in sub
+    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/substitutions.py", line 278, in substitute
+    s = formatter.vformat(s, (), kwargs) # type: ignore
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 165, in vformat
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 205, in _vformat
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/substitutions.py", line 168, in get_field
+    obj, arg_used = super(Formatter, self).get_field(field_name, args, kwargs)
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 270, in get_field
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 227, in get_value
+KeyError: 'money'
 
 macOS-10.16-x86_64-i386-64bit x86_64
 Ren'Py 8.0.3.22090809
-Farm HackNC 1.0
-Sat Nov  5 14:37:18 2022
+Begonia Grove 1.0
+Sat Nov  5 16:53:34 2022
