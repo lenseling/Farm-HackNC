@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Farm HackNC")
+define config.name = _("Begonia Grove")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -29,8 +29,12 @@ define config.version = "1.0"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
-""")
+define gui.about = _("""\
+You are Trudie, a 28 year old who has been living in the city for all her life. 
+
+Seeking change, Trudie arrives at her P.O. box to find a letter telling her that she has inherited the farm of her late grandfather.
+
+ You must now embark on a new chapter in your life to manage this mysterious farm, meet new suitors, and find yourself along the way.""")
 
 
 ## A short name for the game used for executables and directories in the built
