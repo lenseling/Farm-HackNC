@@ -50,7 +50,7 @@ label prologue:
 
         "Upon opening my P.O. box, I noticed a slightly crumpled letter. It was the only thing in the small box, and I gently took it out to observe it."
 
-        # show letter
+        show letter
 
         python:
             name = renpy.input("On the envelope was my name in elegant handwriting: To ")
@@ -66,6 +66,7 @@ label prologue:
                 jump choice_ignore
         
         label choice_open:
+
             "The Letter" "Dear [name], if this letter has found you, I have already made my way into the afterlife. I know we never talked much, but you are the only person I believe I can truly trust." 
             
             "The Letter" "This letter is to let you know that you are now in full ownership of my farm, Begonia Grove."
