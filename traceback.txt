@@ -1,22 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 27, in script
-    e "You've created a new Ren'Py game."
-Exception: Sayer 'e' is not defined.
+  File "game/script.rpy", line 17, in script
+    "Beep-beep-beep! The incessant honking outside my window wakes me from my slumber. It wasn’t like I got much sleep anyways."
+Exception: The say screen (or show_function) must return a Text object.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 27, in script
-    e "You've created a new Ren'Py game."
-  File "C:\Users\lilie\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 881, in execute
-    who = eval_who(self.who, self.who_fast)
-  File "C:\Users\lilie\Downloads\renpy-8.0.3-sdk\renpy\ast.py", line 774, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 'e' is not defined.
+  File "game/script.rpy", line 17, in script
+    "Beep-beep-beep! The incessant honking outside my window wakes me from my slumber. It wasn’t like I got much sleep anyways."
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/ast.py", line 921, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/exports.py", line 1373, in say
+    who(what, *args, **kwargs)
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 1266, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 927, in do_display
+    display_say(who,
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/character.py", line 624, in display_say
+    raise Exception("The say screen (or show_function) must return a Text object.")
+Exception: The say screen (or show_function) must return a Text object.
 
-Windows-10-10.0.19044 AMD64
+macOS-10.16-x86_64-i386-64bit x86_64
 Ren'Py 8.0.3.22090809
 Farm HackNC 1.0
-Sat Nov  5 12:33:23 2022
+Sat Nov  5 14:37:18 2022

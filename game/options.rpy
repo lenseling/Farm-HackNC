@@ -96,6 +96,12 @@ define config.end_game_transition = None
 ## Instead, use a with statement after showing the initial scene.
 
 
+## Game autosaves when a choice or input is made
+
+define config.autosave_on_choice = True
+define config.autosave_on_input = True
+
+
 ## Window management ###########################################################
 ##
 ## This controls when the dialogue window is displayed. If "show", it is always

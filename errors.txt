@@ -1,0 +1,14 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 45: expected statement.
+    name = renpy.input("On the envelope, in elegant handwriting was my name: To ")
+         ^
+
+File "game/script.rpy", line 47: expected statement.
+    name = name.strip() or "Trudie"
+         ^
+
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Sat Nov  5 13:58:32 2022
