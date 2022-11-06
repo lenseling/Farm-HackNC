@@ -1,6 +1,6 @@
 ﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the name of the character.
+# Declare characters used by this game.
 
 define trudy = Character("[name]")
 define aub = Character("Aubrey Jene")
@@ -8,15 +8,33 @@ define bis = Character("Biscuit 'Kit' Croissant")
 define cou = Character("Cheval 'Zach' Chourgette")
 define dan = Character("Dan Immals")
 
-define money = 200
+# Keeps track of money and day on farm
+define money = 210
+define day = 1
+define bad_end = 0
+
+# Keeps track of farm's mood
+define mood = {0: "Angry", 1: "Sad", 2: "Neutral", 3: "Happy", 4: "Eggcellent"}
+define chicken_mood = 1
+define cow_mood = 1
+define carrot_mood = 1
+
+# Keeps track of action items and action item values
+# For each iten in plus: ["item name", money gained if item selected]
+# For each item in zero: ["item name", add to eggs, add to milk, add to carrots, valid]
+# For each item in minus: ["item name", money lost if item selected]
+# Mood affected: 1 for chicken, 2 for cow, 3 for carrot
+define plus = {0: ["Sell eggs", 20], 1: ["Sell milk", 20], 2: ["Sell carrots", 25]}
+define zero = {0: ["Water crops", 0, 0, 5, True], 1: ["Weed crops", 0, 0, 5, True], 2: ["Tend to livestock", 5, 5, 0, True], 3: ["Fix machinery", 5, 5, 5, False], 4: ["Apply fertilizer", 0, 0, 10, False]}
+define minus = {0: ["Buy new machine parts", 50], 1: ["Buy fertilizer", 20], 2: ["Buy better feed", 20], 3: ["Buy more chickens", 30]}
 
 # The game starts here.
 
 label start:
     call prologue
-
     return
 
+# Prologue: Trudy recieves a mysterious letter in the mail. Her grandfather has passed away – and is giving her his farm!
 
 label prologue:
     scene room
@@ -51,7 +69,7 @@ label prologue:
     
     "Looking at the stately, trimmed bushes lining the sidewalk, I pause for a breath."
 
-    "My route has led me to the post office." 
+    "My route has led me to the post office."
     
     "Although I rarely stop by – I have no reason to. I get the occasional package, but nothing worth checking for. – today I decide I might as well."
 
@@ -61,11 +79,15 @@ label prologue:
         xalign 0.75
         yalign 1.0
 
+    # User can input a chosen name. Default name is Trudy.
+
     python:
         name = renpy.input("On the envelope is my name in elegant handwriting: To ")
         name = name.strip() or "Trudy"
 
     "My brows furrow in confusion. Who could it be from?"
+
+    # Option to read or ignore letter. Reading will progress story. Ignoring will end game.
 
     menu:
         "{i}Open the envelope.{/i}":
@@ -99,9 +121,10 @@ label prologue:
         
         "I toss the letter in the trash and make my way back home."
 
-        # This ends the game.
-        return
+        jump chapter_end
 
+
+# Chapter One: Trudy finds Begonia Grove in a state of disrepair. 
 
 label chapter_one:
     scene blank
@@ -132,12 +155,18 @@ label chapter_one:
 
     "I breathe in the country air. There is a lot of work to be done."
 
-    label day_one:
-        scene sunset
+    # explain end of day game mechanic
+    
+    call end_day
 
-        show screen day_break("week one: monday")
-        pause
-        hide screen day_break
+    "Yikes! Gotta watch out for living expenses. There goes $10!"
+
+    "Would Begonia Grove be alright if I didn't take care of it...? Probably not."
+
+    # Start money decision making mini-game sequence. Play through a week of decision making. Repair the farm and avoid going bankrupt!
+
+    label wk1_d1:
+        call begin_day("week one: monday")
 
         "The crowing of a lone rooster startles me awake."
 
@@ -149,17 +178,14 @@ label chapter_one:
         
         "I am dedicating the rest of my life savings to fixing the farm - all $200 of the crumpled bills in my wallet."
         
-        trudy "What should I start with today?"
+        trudy "What should I tackle first?"
 
         # mini game
-        scene farm
+        call money_money
 
-        show screen money_game("Sell eggs collected from chickens","Fix machinery","Buy fertilizer")
-        pause
+        "I wipe the sweat from my brow and stretch out my sore muscles."
 
-        scene night
-
-        "I wipe the sweat from my brow and stretch out my sore joints."
+        show trudy-neutral
         
         trudy  "All in a day’s work!"
 
@@ -167,12 +193,10 @@ label chapter_one:
         
         "I shake my head before slinking into the warmth of my blankets. It was probably nothing."
 
-    label day_two:
-        scene sunset
+        call end_day
 
-        show screen day_break("week one: tuesday")
-        pause
-        hide screen day_break
+    label wk1_d2:
+        call begin_day("week one: tuesday")
 
         "The sun feels warm on my skin as it peeks through the thin linen curtains covering the windows."
 
@@ -181,27 +205,14 @@ label chapter_one:
         "I slept in today, still groggy from the previous day’s work."
 
         # mini game
-        scene farm
+        call money_money
 
-        show screen money_game("Sell milk collected from cows","Weed crops","Buy new machinery parts")
-        pause
+        "A good day's work."
 
-        scene night
+        call end_day
 
-        "A gust of wind rushes at me as I close the barn gates for the night. I feel a chill run down my spine."
-        
-        "A shower of begonia petals flutter around me like a crimson celebration."
-
-        "I am torn between awestruck appreciation and the urge to hurry home."
-        
-        trudy "What a sight to behold."
-
-    label day_three:
-        scene sunset
-
-        show screen day_break("week one: wednesday")
-        pause
-        hide screen day_break
+    label wk1_d3:
+        call begin_day("week one: wednesday")
 
         "I wake up before the farm this morning. It is still dark outside, but the fields called to me in a distant dream."
 
@@ -212,74 +223,66 @@ label chapter_one:
         "A shot of adrenaline invigorates me further."
 
         # mini game
-        scene farm
-        
-        show screen money_game("Sell carrots","Water crops","Buy more chickens")
-        pause
-
-        scene night
+        call money_money
+        show trudy-neutral
 
         "A wave of exhaustion passes through my body as I sit on a tipped over milking bucket."
 
         "For a split second, the cows seem to smile at me, almost if they were appreciating my hard work."
 
+        hide trudy-neutral
+        show trudy-happy
+
         "I smile back, patting one on the nose. Things are looking up."
 
-    label day_four:
-        scene sunset
+        call end_day
 
-        show screen day_break("week one: thursday")
-        pause
-        hide screen day_break
+    label wk1_d4:
+        call begin_day("week one: thursday")
 
-        "The days are beginning to feel natural. Running a farm is hard work, but honest and rewarding all the same."
+        "This life is beginning to feel natural."
 
         show trudy-happy
 
         "Everything here is beautiful, from the brightness of the morning sun to the crowing of the lone rooster."
 
         # mini game
-        scene farm
-        
-        show screen money_game("Sell eggs collected from chickens","Tend to livestock","Buy better cow feed")
-        pause
-
-        scene night
+        call money_money
 
         "Looking at the farmscape, I grin."
 
         "For the first time in forever, I can see a future for myself."
 
-    label day_five:
-        scene sunset
+        call end_day
 
-        show screen day_break("week one: friday")
-        pause
-        hide screen day_break
-
+    label wk1_d5:
+        call begin_day("week one: friday")
         show trudy-happy
 
-        "Energy courses through my veins. I never knew routine could feel this good."
+        "Rise and shine!"
 
         # mini game
-        scene farm
-        
-        show screen money_game("Sell carrots","Take a break","Give out free samples")
-        pause
+        call money_money
+        show trudy-neutral
 
-        scene night
+        trudy "..."
 
-        "I count the money I have in my pocket. [money] dollars."
+        trudy "..."
 
-        trudy "I can work with this."
+        trudy "...Sometimes, I do get a little lonely out here."
+
+        call end_day
 
     jump chapter_two
+    
 
+# Chapter Two: On the first Saturday of the month, a neighbor invites Trudy to the town market. Meet the fascinating characters surrounding Begonia Grove!
 
 label chapter_two:
-    show screen day_break("week one: saturday")
-    pause
-    hide screen day_break
+    call begin_day("week one: saturday")
+
+    # Meet Biscuit 'Kit' Croissant. Bubbly, energetic, sweet – and our next door neighbor!
+    # Kit's hobbies inclube experimental beekeeping and following their grandma's baking recipes.
 
     label meet_kit:
         scene blank
@@ -302,9 +305,12 @@ label chapter_two:
             xalign 0.75
             yalign 1.0
 
-        bis "Biscuit Crossaint, Kit for short. I live next door - it's good to finally meet you!"
+        bis "Biscuit Croissant, Kit for short. I live next door - it's good to finally meet you!"
 
         "Kit is incredibly bubbly and happy to see me."
+
+        # Choosing different prompts unlocks different dialogues.
+        # With a future implementation of a heart point system, choosing the "good" ending will help you gain heart points - and vice versa.
 
         menu:
             "{i}I like her immediately.{/i}":
@@ -361,6 +367,9 @@ label chapter_two:
 
             jump meet_aubrey
 
+    # Ruthless, shrewd, and competitive, Aubrey has built her empire from the ground up.
+    # She's been crowned Harvest Queen at the county fair for three years running - and she plans to keep it that way.
+
     label meet_aubrey:
         "My first customer arrives within minutes."
 
@@ -377,6 +386,9 @@ label chapter_two:
         show trudy-shock:
             xalign 0.25
             yalign 1.0
+
+        # Choosing different prompts unlocks different dialogues from Aubrey, as well as a different first meeting with Zach.
+        # With a future implementation of a heart point system, choosing the "good" ending will help you gain heart points - and vice versa.
 
         menu:
             "{i}I'm scared.{/i}":
@@ -443,6 +455,9 @@ label chapter_two:
 
         jump meet_zach
 
+    # Zach may seem flamboyant, thoughtless, and richer than the rest of the county put together, but he knows /something/ about this town. They all do.
+    # Zach is an equestrian on the side. He doesn't particularly like horses, but he loves when people ask about his name, and that pretty much makes up for it.
+
     label meet_zach:
         show zach:
             xalign 0.75
@@ -453,6 +468,9 @@ label chapter_two:
         "I take a closer look at him. He's clean shaven, with high, aristocratic features."
         
         "Although his clothes look about the same cut as everyone else's, they are clearly newer and made of a silken material that shimmers subtly as he moves."
+
+        # Choosing different prompts unlocks different dialogues.
+        # With a future implementation of a heart point system, choosing the "good" ending will help you gain heart points - and vice versa.
 
         menu:
             "Where'd you get your shirt?":
@@ -497,14 +515,16 @@ label chapter_two:
 
         "Zach turns and walks away with brisk strides, his previously unseen servants trailing behind him."
 
-        "I think I catch a flash of an emotion - disappointment? relief? sorrow? or perhaps something darker - on his face as he vanishes into the crowd."
+        "I think I catch a flash of an emotion - disappointment? relief? concern? or perhaps something darker - on his face as he vanishes into the crowd."
 
         hide zach
 
         trudy "How strange..."
 
+    # Dan's just a guy. He's just some dude. Really. Why are you asking so many questions?
+
     label meet_dan:
-        "While I'm still pondering the strange interaction, another man appears at my stand."
+        "While I'm still pondering the interaction, another man appears at my stand."
 
         show dan:
             xalign 0.75
@@ -561,7 +581,108 @@ label chapter_two:
     jump chapter_three
 
 
+# More farming sim!
+
 label chapter_three:
+    label wk2_d0:
+        call begin_day("week one: sunday")
+        show trudy-happy
+
+        "That was a nice break. Let's get back into it!"
+
+        # mini game
+        call money_money
+
+        "I've only been here a week, but I can already see the fruits of my labors."
+
+        call end_day
+
+    label wk2_d1:
+        call begin_day("week one: monday")
+        # mini game
+        call money_money
+
+        "A gust of wind rushes at me as I close the barn gates for the night. I feel a chill run down my spine."
+        
+        "A shower of begonia petals flutter around me like a crimson celebration."
+
+        "I am torn between awestruck appreciation and primal terror. I hurry home."
+
+        show trudy-shock
+        
+        trudy "What a sight to behold."
+
+        call end_day
+
+    label wk2_d2:
+        call begin_day("week one: tuesday")
+        show trudy-shock
+
+        trudy "Another dream last night...I was lying in a flower field, begonias as far as eye could see."
+
+        trudy "They eveloped me while singing the most beautiful song..."
+
+        # mini game
+        call money_money
+        show trudy-shock
+
+        trudy "I wasn't alone in that field. I remember that now. But who was with me? And why was I so scared?"
+
+        call end_day
+
+    label wk2_d3:
+        call begin_day("week one: wednesday")
+        show trudy-happy
+
+        "Rise and shine!"
+
+        # mini game
+        call money_money
+
+        "It's not much, but it's honest work."
+
+        call end_day
+
+    label wk2_d4:
+        call begin_day("week one: thursday")
+        show trudy-happy
+
+        "Rise and shine!"
+
+        # mini game
+        call money_money
+
+        "The work is hard but rewarding. I'm so glad I took this opportunity."
+
+        call end_day
+
+    label wk2_d5:
+        call begin_day("week one: friday")
+        show trudy-happy
+
+        "Energy courses through my veins. I never knew routine could feel this good."
+
+        # mini game
+        call money_money
+
+        "I count the money I have in my pocket. [money] dollars."
+
+        show trudy-happy
+
+        trudy "I can work with this."
+
+        call end_day
+    
+    jump chapter_end
+
+# Project is in development :)
+
+label chapter_end:
+    if bad_end == 1:
+        call bad_end_1
+    if bad_end == 2:
+        call bad_end_2
+
     scene blank
 
     show screen day_break("Thank you for playing our demo :D.")
@@ -569,18 +690,98 @@ label chapter_three:
     hide screen day_break
 
     scene farm
-    show trudy-wink:
-        xalign 0.25
-        yalign 1.0
 
-    show screen day_break("To read more, please consider supporting the team!")
+    show screen day_break("To read more, please consider supporting our team!")
+    pause
+    hide screen day_break
+
+    show trudy-wink
+
+    # This ends the game.
+    $ MainMenu(confirm=False)()
+
+# You didn't expect to keep the farm with no money to run it, did you?
+
+label bad_end_1:
+    scene farm
+
+    "Begonia Grove sits dilapidated. A foreclosure sign swings angrily on its hinges near the gate. The wind howls long and mourful."
+
+    show kit:
+        xalign 0.25 yalign 1.0
+    show aubrey:
+        xalign 0.75 yalign 1.0
+
+    "Townsperson 1" "Poor girl. A good heart but no head for business, really."
+
+    "Townsperson 2" "It's for the best really. That got to her before..."
+
+    "Townsperson 1" "Yeah. Wonder what they'll do with this place."
+
+    "Townsperson 2" "Whatever it is, I want nothing to do with it."
+
+    "They share a look, and continue on their way."
+
+    scene farm
+    return
+
+# Begonia Grove is very particular about its keepers.
+
+label bad_end_2:
+    scene blank
+    show screen day_break("your crops are dead...")
+    pause
+    hide screen day_break
+    show screen day_break("your cows are starving...")
+    pause
+    hide screen day_break
+    show screen day_break("your chickens have fled the coop...")
+    pause
+    hide screen day_break
+    show screen day_break("what now, little begonia girl?")
+    pause
+    hide screen day_break
+    
+    "The wind rises."
+
+    return
+
+
+# Beginning of day formatting. Return to call block.
+label begin_day(d):
+    $ day += 1
+
+    scene sunset
+
+    show screen day_break(d)
     pause
     hide screen day_break
 
     return
 
 
-# Displays before each day
+# End of day formatting. Check if money/farm happiness is too low. Go to ending if true, return to block if not.
+label end_day:
+    scene blank
+
+    $ money -= 10
+
+    if day%7 == 6:
+        $ chicken_mood -= 1
+        $ cow_mood -= 1
+        $ carrot_mood -= 1
+    
+    if money < 0:
+        $ bad_end = 1
+        jump chapter_end
+    elif chicken_mood == 0 and cow_mood == 0 and carrot_mood == 0:
+        $ bad_end = 2
+        jump chapter_end
+    else:
+        return
+
+
+# Blank screen with text. Displays before each day.
 screen day_break(day):
     frame:
         xpadding 50
@@ -590,29 +791,88 @@ screen day_break(day):
         text day
 
 
-# Money decision mini-game
-screen money_game(plus, zero, minus):
+# Money decision mini-game. Return to call block.
+# Randomly determine actions and pass to mini-game screen
+label money_money:
+    scene farm
+
+    $ pval = renpy.random.randint(0,2)
+    $ zval = renpy.random.randint(0,4)
+    $ mval = renpy.random.randint(0,3)
+
+    # If zval locked, choose new zval
+    while (zero[zval][4] == False):
+        $ zval = renpy.random.randint(0,4)
+
+    show screen money_game(pval, zval, mval)
+    pause
+    scene night
+    return
+
+
+# Money decision mini-game screen
+# If user chooses plus option, add appropriate amount to money
+# If user chooses zero option, adjust appropriate plus items
+# If user chooses minus option, subtract appropriate amount to money + extras
+screen money_game(p, z, m):
     frame:
         xalign 0.5 yalign 0.5
         xpadding 60 ypadding 60
-        vbox:
-            spacing 50
-            text "$[money]" xalign 1.0 yalign 0.5
-            textbutton plus xalign 0.5 yalign 0.5:
-                action [Hide("money_game"), Call("add_money", 50)]
-            textbutton zero xalign 0.5 yalign 0.5:
-                action Hide("money_game")
-            textbutton minus xalign 0.5 yalign 0.5:
-                action [Hide("money_game"), Call("sub_money", 50)]
+        hbox:
+            spacing 60
+            vbox:
+                spacing 50
+                textbutton plus[p][0] xalign 0.5 yalign 0.5:
+                    action [Hide("money_game"), Call("set_from_plus", plus[p][1])]
+                textbutton zero[z][0] xalign 0.5 yalign 0.5:
+                    action [Hide("money_game"), Call("set_from_zero", z)]
+                textbutton minus[m][0] xalign 0.5 yalign 0.5:
+                    action [Hide("money_game"), Call("set_from_minus", m)]
+            vbox:
+                spacing 50
+                text "$[money]" xalign 1.0 yalign 0.5
+                $ chk = mood[chicken_mood]
+                text "Chicken: [chk]" xalign 1.0 yalign 0.5
+                $ cow = mood[cow_mood]
+                text "Cow: [cow]" xalign 1.0 yalign 0.5
+                $ car = mood[carrot_mood]
+                text "Carrot: [car]" xalign 1.0 yalign 0.5
 
 
-# Updates money variable
-label add_money(x):
+# Updates variable from money_game. Return to call block.
+label set_from_plus(x):
     $ money += x
     return
 
+# Adjust appropriate plus amounts. If fix machine or fertilize crops, make false. Update mood.
+label set_from_zero(z):
+    $ plus[0][1] += zero[z][1]
+    $ plus[1][1] += zero[z][2]
+    $ plus[2][1] += zero[z][3]
 
-label sub_money(x):
-    $ money -= x
+    $ chicken_mood += zero[z][1]/5
+    $ cow_mood += zero[z][2]/5
+    $ carrot_mood += zero[z][3]/5
+
+    if z == 3:
+        $ zero[3][4] = False
+    elif z == 4:
+        $ zero[4][4] = False
     return
 
+# If buy more chickens, egg price increased by 10
+# If buy better feed, tend to livestock bonus increased by 5
+# If buy new machine parts, make fix machine available
+# If buy fertilizer, make fertilize crops available
+label set_from_minus(m):
+    $ money -= minus[m][1]
+    if m == 3:
+        $ plus[0][1] += 10
+    elif m == 2:
+        $ zero[2][1] += 5
+        $ zero[2][2] += 5
+    elif m == 1:
+        $ zero[4][4] = True
+    elif m == 0:
+        $ zero[3][4] = True
+    return

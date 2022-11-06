@@ -1,32 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 16, in script call
+  File "game/script.rpy", line 33, in script call
     call prologue
-  File "game/script.rpy", line 258, in script call
-    pause
-  File "game/script.rpy", line 302, in script
-    label sub_money(x):
-TypeError: Missing required positional arguments: 'x'
+  File "game/script.rpy", line 169, in script call
+    call begin_day("week one: monday")
+  File "game/script.rpy", line 743, in script
+    $ day += 1
+  File "game/script.rpy", line 743, in <module>
+    $ day += 1
+TypeError: can only concatenate str (not "int") to str
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 16, in script call
+  File "game/script.rpy", line 33, in script call
     call prologue
-  File "game/script.rpy", line 258, in script call
-    pause
-  File "game/script.rpy", line 302, in script
-    label sub_money(x):
-  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/ast.py", line 1072, in execute
-    values = apply_arguments(self.parameters, renpy.store._args, renpy.store._kwargs)
-  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/ast.py", line 294, in apply_arguments
-    return parameters.apply(args, kwargs, ignore_errors)
-  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/ast.py", line 230, in apply
-    raise TypeError(
-TypeError: Missing required positional arguments: 'x'
+  File "game/script.rpy", line 169, in script call
+    call begin_day("week one: monday")
+  File "game/script.rpy", line 743, in script
+    $ day += 1
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/Users/ruthwu/Desktop/renpy-8.0.3-sdk/renpy/python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 743, in <module>
+    $ day += 1
+TypeError: can only concatenate str (not "int") to str
 
 macOS-10.16-x86_64-i386-64bit x86_64
 Ren'Py 8.0.3.22090809
 Begonia Grove 1.0
-Sat Nov  5 20:23:24 2022
+Sun Nov  6 06:52:38 2022
