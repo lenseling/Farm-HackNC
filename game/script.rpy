@@ -887,9 +887,9 @@ label set_from_zero(z):
     $ plus[1][1] += zero[z][2]
     $ plus[2][1] += zero[z][3]
 
-    $ chicken_mood += zero[z][1]/5
-    $ cow_mood += zero[z][2]/5
-    $ carrot_mood += zero[z][3]/5
+    $ chicken_mood += zero[z][1]//4
+    $ cow_mood += zero[z][2]//4
+    $ carrot_mood += zero[z][3]//4
 
     if chicken_mood > 4:
         $ chicken_mood = 4
