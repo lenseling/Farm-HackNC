@@ -2,21 +2,17 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 798: expected ':' not found.
-    else if z == 4:
-         ^
+File "game/script.rpy", line 858: expected statement.
+    chicken_mood = 5
+                 ^
 
-File "game/script.rpy", line 809: expected ':' not found.
-    else if m == 2:
-         ^
+File "game/script.rpy", line 860: expected statement.
+    cow_mood = 5
+             ^
 
-File "game/script.rpy", line 812: expected statement.
-    else if m == 1:
-         ^
-
-File "game/script.rpy", line 814: expected statement.
-    else if m == 0:
-         ^
+File "game/script.rpy", line 862: expected statement.
+    carrot_mood = 5
+                ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sun Nov  6 05:41:43 2022
+Sun Nov  6 08:36:28 2022

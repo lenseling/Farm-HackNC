@@ -31,7 +31,7 @@ define minus = {0: ["Buy new machine parts", 50], 1: ["Buy fertilizer", 20], 2: 
 # The game starts here.
 
 label start:
-    call prologue from _call_prologue
+    call prologue
     return
 
 # Prologue: Trudy recieves a mysterious letter in the mail. Her grandfather has passed away – and is giving her his farm!
@@ -127,8 +127,6 @@ label prologue:
 # Chapter One: Trudy finds Begonia Grove in a state of disrepair. 
 
 label chapter_one:
-    play music "/audio/mystery.mp3"
-
     scene blank
 
     show screen day_break("week one: sunday")
@@ -159,7 +157,7 @@ label chapter_one:
 
     # explain end of day game mechanic
     
-    call end_day from _call_end_day
+    call end_day
 
     "Yikes! Gotta watch out for living expenses. There goes $10!"
 
@@ -168,7 +166,7 @@ label chapter_one:
     # Start money decision making mini-game sequence. Play through a week of decision making. Repair the farm and avoid going bankrupt!
 
     label wk1_d1:
-        call begin_day("week one: monday") from _call_begin_day
+        call begin_day("week one: monday")
 
         "The crowing of a lone rooster startles me awake."
 
@@ -183,7 +181,7 @@ label chapter_one:
         trudy "What should I tackle first?"
 
         # mini game
-        call money_money from _call_money_money
+        call money_money
 
         "I wipe the sweat from my brow and stretch out my sore muscles."
 
@@ -195,10 +193,10 @@ label chapter_one:
         
         "I shake my head before slinking into the warmth of my blankets. It was probably nothing."
 
-        call end_day from _call_end_day_1
+        call end_day
 
     label wk1_d2:
-        call begin_day("week one: tuesday") from _call_begin_day_1
+        call begin_day("week one: tuesday")
 
         "The sun feels warm on my skin as it peeks through the thin linen curtains covering the windows."
 
@@ -207,14 +205,14 @@ label chapter_one:
         "I slept in today, still groggy from the previous day’s work."
 
         # mini game
-        call money_money from _call_money_money_1
+        call money_money
 
         "A good day's work."
 
-        call end_day from _call_end_day_2
+        call end_day
 
     label wk1_d3:
-        call begin_day("week one: wednesday") from _call_begin_day_2
+        call begin_day("week one: wednesday")
 
         "I wake up before the farm this morning. It is still dark outside, but the fields called to me in a distant dream."
 
@@ -225,7 +223,7 @@ label chapter_one:
         "A shot of adrenaline invigorates me further."
 
         # mini game
-        call money_money from _call_money_money_2
+        call money_money
         show trudy-neutral
 
         "A wave of exhaustion passes through my body as I sit on a tipped over milking bucket."
@@ -237,10 +235,10 @@ label chapter_one:
 
         "I smile back, patting one on the nose. Things are looking up."
 
-        call end_day from _call_end_day_3
+        call end_day
 
     label wk1_d4:
-        call begin_day("week one: thursday") from _call_begin_day_3
+        call begin_day("week one: thursday")
 
         "This life is beginning to feel natural."
 
@@ -249,22 +247,22 @@ label chapter_one:
         "Everything here is beautiful, from the brightness of the morning sun to the crowing of the lone rooster."
 
         # mini game
-        call money_money from _call_money_money_3
+        call money_money
 
         "Looking at the farmscape, I grin."
 
         "For the first time in forever, I can see a future for myself."
 
-        call end_day from _call_end_day_4
+        call end_day
 
     label wk1_d5:
-        call begin_day("week one: friday") from _call_begin_day_4
+        call begin_day("week one: friday")
         show trudy-happy
 
         "Rise and shine!"
 
         # mini game
-        call money_money from _call_money_money_4
+        call money_money
         show trudy-neutral
 
         trudy "..."
@@ -273,7 +271,7 @@ label chapter_one:
 
         trudy "...Sometimes, I do get a little lonely out here."
 
-        call end_day from _call_end_day_5
+        call end_day
 
     jump chapter_two
     
@@ -281,9 +279,7 @@ label chapter_one:
 # Chapter Two: On the first Saturday of the month, a neighbor invites Trudy to the town market. Meet the fascinating characters surrounding Begonia Grove!
 
 label chapter_two:
-    stop music fadeout 1
-
-    call begin_day("week one: saturday") from _call_begin_day_5
+    call begin_day("week one: saturday")
 
     # Meet Biscuit 'Kit' Croissant. Bubbly, energetic, sweet – and our next door neighbor!
     # Kit's hobbies inclube experimental beekeeping and following their grandma's baking recipes.
@@ -560,8 +556,6 @@ label chapter_two:
 
     "From my farmhouse at the top of the hill, I gaze at the rolling fields below."
 
-    play music "audio/mystery.mp3" fadeout 1
-
     scene night
 
     "Nestled in scattered crooks and crannies throughout the countryside, warm little lights flicker in the hearths of tiny, distant homes."
@@ -591,22 +585,22 @@ label chapter_two:
 
 label chapter_three:
     label wk2_d0:
-        call begin_day("week two: sunday") from _call_begin_day_6
+        call begin_day("week one: sunday")
         show trudy-happy
 
         "That was a nice break. Let's get back into it!"
 
         # mini game
-        call money_money from _call_money_money_5
+        call money_money
 
         "I've only been here a week, but I can already see the fruits of my labors."
 
-        call end_day from _call_end_day_6
+        call end_day
 
     label wk2_d1:
-        call begin_day("week two: monday") from _call_begin_day_7
+        call begin_day("week one: monday")
         # mini game
-        call money_money from _call_money_money_6
+        call money_money
 
         "A gust of wind rushes at me as I close the barn gates for the night. I feel a chill run down my spine."
         
@@ -618,10 +612,10 @@ label chapter_three:
         
         trudy "What a sight to behold."
 
-        call end_day from _call_end_day_7
+        call end_day
 
     label wk2_d2:
-        call begin_day("week two: tuesday") from _call_begin_day_8
+        call begin_day("week one: tuesday")
         show trudy-shock
 
         trudy "Another dream last night...I was lying in a flower field, begonias as far as eye could see."
@@ -629,47 +623,47 @@ label chapter_three:
         trudy "They eveloped me while singing the most beautiful song..."
 
         # mini game
-        call money_money from _call_money_money_7
+        call money_money
         show trudy-shock
 
         trudy "I wasn't alone in that field. I remember that now. But who was with me? And why was I so scared?"
 
-        call end_day from _call_end_day_8
+        call end_day
 
     label wk2_d3:
-        call begin_day("week two: wednesday") from _call_begin_day_9
+        call begin_day("week one: wednesday")
         show trudy-happy
 
         "Rise and shine!"
 
         # mini game
-        call money_money from _call_money_money_8
+        call money_money
 
         "It's not much, but it's honest work."
 
-        call end_day from _call_end_day_9
+        call end_day
 
     label wk2_d4:
-        call begin_day("week two: thursday") from _call_begin_day_10
+        call begin_day("week one: thursday")
         show trudy-happy
 
         "Rise and shine!"
 
         # mini game
-        call money_money from _call_money_money_9
+        call money_money
 
         "The work is hard but rewarding. I'm so glad I took this opportunity."
 
-        call end_day from _call_end_day_10
+        call end_day
 
     label wk2_d5:
-        call begin_day("week two: friday") from _call_begin_day_11
+        call begin_day("week one: friday")
         show trudy-happy
 
         "Energy courses through my veins. I never knew routine could feel this good."
 
         # mini game
-        call money_money from _call_money_money_10
+        call money_money
 
         "I count the money I have in my pocket. [money] dollars."
 
@@ -677,7 +671,7 @@ label chapter_three:
 
         trudy "I can work with this."
 
-        call end_day from _call_end_day_11
+        call end_day
     
     jump chapter_end
 
@@ -685,9 +679,9 @@ label chapter_three:
 
 label chapter_end:
     if bad_end == 1:
-        call bad_end_1 from _call_bad_end_1
+        call bad_end_1
     if bad_end == 2:
-        call bad_end_2 from _call_bad_end_2
+        call bad_end_2
 
     scene blank
 
@@ -829,7 +823,7 @@ screen money_game(p, z, m):
             vbox:
                 spacing 50
                 textbutton plus[p][0] xalign 0.5 yalign 0.5:
-                    action [Hide("money_game"), Call("set_from_plus", p)]
+                    action [Hide("money_game"), Call("set_from_plus", plus[p][1])]
                 textbutton zero[z][0] xalign 0.5 yalign 0.5:
                     action [Hide("money_game"), Call("set_from_zero", z)]
                 textbutton minus[m][0] xalign 0.5 yalign 0.5:
@@ -846,13 +840,8 @@ screen money_game(p, z, m):
 
 
 # Updates variable from money_game. Return to call block.
-label set_from_plus(p):
-    if p == 1:
-        $ money += plus[p][1] * 5 * chicken_mood
-    elif p == 2:
-        $ money += plus[p][1] * 5 * cow_mood
-    else:
-        $ money += plus[p][1] * 3 * carrot_mood
+label set_from_plus(x):
+    $ money += x
     return
 
 # Adjust appropriate plus amounts. If fix machine or fertilize crops, make false. Update mood.
@@ -864,13 +853,6 @@ label set_from_zero(z):
     $ chicken_mood += zero[z][1]/5
     $ cow_mood += zero[z][2]/5
     $ carrot_mood += zero[z][3]/5
-
-    if chicken_mood > 4:
-        $ chicken_mood = 4
-    if cow_mood > 4:
-        $ cow_mood = 4
-    if carrot_mood > 4:
-        $ carrot_mood = 4
 
     if z == 3:
         $ zero[3][4] = False
