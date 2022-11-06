@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 274: keyword argument 'action' appears more than once in a textbutton statement.
-    action Hide(money)
-          ^
+File "game/script.rpy", line 297: 'padding' is not a keyword argument or valid child for the vbox statement.
+    padding 50
+           ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sat Nov  5 18:12:17 2022
+Sat Nov  5 20:40:59 2022

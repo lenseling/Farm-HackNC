@@ -129,7 +129,7 @@ label chapter_one:
     "I breathe in the country air. There was work to be done."
 
     label day_one:
-        scene farm
+        scene sunset
 
         show screen day_break("day one")
         pause
@@ -153,6 +153,8 @@ label chapter_one:
         show screen money_game("Sell eggs collected from chickens","Fix machinery","Buy fertilizer")
         pause
 
+        scene night
+
         "I wiped the sweat from my brow and stretched out my sore joints."
         
         trudy  "All in a day’s work!"
@@ -162,7 +164,7 @@ label chapter_one:
         "I shook my head before slinking into the warmth of my blankets. It was probably nothing."
 
     label day_two:
-        scene farm
+        scene sunset
 
         show screen day_break("day two")
         pause
@@ -182,6 +184,8 @@ label chapter_one:
         show screen money_game("Sell milk collected from cows","Weed crops","Buy new machinery parts")
         pause
 
+        scene night
+
         "Upon closing the gates of the barn, I felt a chill run down my spine as a gust of wind swept my hair upwards."
         
         "The petals of the begonias fluttered around me like a celebration of crimson."
@@ -189,7 +193,7 @@ label chapter_one:
         trudy "What a sight to behold."
 
     label day_three:
-        scene farm
+        scene sunset
 
         show screen day_break("day three")
         pause 
@@ -207,6 +211,8 @@ label chapter_one:
         show screen money_game("Sell carrots","Tend to livestock","Buy more chickens")
         pause
 
+        scene night
+
         "A wave of exhaustion passed through my body as I sat on a tipped over milking bucket."
 
         "For a split second, the cows seemed to smile at me, almost if they were appreciating my hard work."
@@ -214,7 +220,7 @@ label chapter_one:
         "I smiled back, knowing my labor was paying off."
 
     label day_four:
-        scene farm
+        scene sunset
 
         show screen day_break("day four")
         pause
@@ -234,12 +240,14 @@ label chapter_one:
         show screen money_game("Sell eggs collected from chickens","Take a break","Buy better cow feed")
         pause
 
+        scene night
+
         "Looking at the farmscape, I grinned."
 
         "Change was beginning to instill itself into the roots of the earth. I could feel a shift within myself, and I no longer hated being alone."
 
     label day_five:
-        scene farm
+        scene sunset
 
         show screen day_break("day five")
         pause
@@ -256,6 +264,8 @@ label chapter_one:
         
         show screen money_game("Sell carrots","Meet the neighbors","Give out free samples")
         pause
+
+        scene night
 
         "I counted the money I had in my pocket. [money] dollars."
 
@@ -283,17 +293,17 @@ screen day_break(day):
 # Money decision mini-game
 screen money_game(plus, zero, minus):
     frame:
-        xalign 0.5 yalign 0.25
-        textbutton plus:
-            action [Hide("money_game"), Call("add_money", 50)]
-    frame:
         xalign 0.5 yalign 0.5
-        textbutton zero:
-            action Hide("money_game")
-    frame:
-        xalign 0.5 yalign 0.75
-        textbutton minus:
-            action [Hide("money_game"), Call("sub_money", 50)]
+        xpadding 60 ypadding 60
+        vbox:
+            spacing 50
+            text "$[money]" xalign 1.0 yalign 0.5
+            textbutton plus xalign 0.5 yalign 0.5:
+                action [Hide("money_game"), Call("add_money", 50)]
+            textbutton zero xalign 0.5 yalign 0.5:
+                action Hide("money_game")
+            textbutton minus xalign 0.5 yalign 0.5:
+                action [Hide("money_game"), Call("sub_money", 50)]
 
 # Updates money variable
 label add_money(x):
