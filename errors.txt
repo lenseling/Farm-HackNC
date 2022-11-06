@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 297: 'padding' is not a keyword argument or valid child for the vbox statement.
-    padding 50
-           ^
+File "game/script.rpy", line 318: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "Go away."
+              ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sat Nov  5 20:40:59 2022
+Sat Nov  5 23:09:52 2022

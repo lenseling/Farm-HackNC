@@ -17,24 +17,27 @@ label start:
 
     return
 
+
 label prologue:
     scene room
 
     "Beep-beep-beep! The incessant honking outside my window wakes me from my slumber. It wasn’t like I got much sleep anyways."
 
-    "The cloud cover is thick today. A sense of heaviness fills the atmosphere, almost choking me."
+    "The cloud cover is thick today. In the dead heat of summer, a choking heaviness fills my lungs. I struggle to breathe."
 
-    "It felt like every other day that I had lived in the past 28 years of my life; however the numbness of routine had already settled in my bones."
+    "I would panic, but I've lived with this feeling for as long as I can remember; the numbness of routine has already settled in my bones."
 
     show trudy-neutral
 
-    "Bringing myself to my desk was easier said than done. The brightness of the screen seared my eyes as I glazed over the emails piling up in my inbox." 
+    "Bringing myself to my desk is easier said than done. The brightness of the screen sears my glazed eyes as I scan the emails piling up in my inbox." 
     
     "Nothing new, nothing interesting. Just advertisements and spam messages galore." 
     
-    "I’d already given up on expecting emails back from job applications – I never knew why I still kept a sliver of hope left in my chest."
+    "I’ve given up on expecting emails back from job applications." 
+    
+    "The golden wings of hope between my ribs are bogged down by the humidity, and the fluttering in my chest is more likely panic. Or a heart attack."
 
-    "I decided to take a walk to clear my head. Though the air was smoggy and suffocating, it felt better than the apartment walls surrounding me."
+    "I decide to take a walk to clear my mind. Though the air is smoggy and suffocating, it feels better than the apartment walls closing in on me."
 
     scene street
 
@@ -42,50 +45,50 @@ label prologue:
         xalign 0.25
         yalign 1.0
 
-    "Jogging always felt like the only times I could truly be free. With the music pounding in my ears and the wind flowing through my hair, I felt boundless and featherlight." 
-    
-    "Looking at the nicely trimmed bushes lining the sidewalk, I took a deep breath in." 
-    
-    "I’d always wondered how it would be like to fit in. Loneliness was more of a circumstance than a choice at this point."
+    "Jogging is freeing, in a way. With music pounding in my ears and the breeeze in my hair, I feel boundless and featherlight."
 
-    "My jogging route took me to the post office, where I rarely stopped by. I had no reason to, as I kept to myself for the most part."
+    "I lose my loneliness in the winding city streets."
     
-    "The occasional package was sent to me, but nothing worth checking for."
+    "Looking at the stately, trimmed bushes lining the sidewalk, I pause for a breath."
 
-    "Upon opening my P.O. box, I noticed a slightly crumpled letter. It was the only thing in the small box, and I gently took it out to observe it."
+    "My route has led me to the post office." 
+    
+    "Although I rarely stop by – I have no reason to. I get the occasional package, but nothing worth checking for. – today I decide I might as well."
+
+    "Upon opening my P.O. box, I discover a slightly crumpled letter. It is the only thing in the small box, and I gently take it out to observe it."
     
     show letter:
         xalign 0.75
         yalign 1.0
 
     python:
-        name = renpy.input("On the envelope was my name in elegant handwriting: To ")
+        name = renpy.input("On the envelope is my name in elegant handwriting: To ")
         name = name.strip() or "Trudy"
 
-    "My brows furrowed in confusion. Who could it be from?"
+    "My brows furrow in confusion. Who could it be from?"
 
     menu:
-        "Open the envelope":
+        "{i}Open the envelope.{/i}":
             jump choice_open
 
-        "Ignore":
+        "{i}Ignore.{/i}":
             jump choice_ignore
     
     label choice_open:
 
-        "The Letter" "Dear [name], if this letter has found you, I have already made my way into the afterlife. I know we never talked much, but you are the only person I believe I can truly trust." 
+        "The Letter" "Dear [name], if this letter has found you, I have already made my way into the afterlife. I know we haven't talked much in recent years, but you are the only person I believe I can truly trust." 
         
-        "The Letter" "This letter is to let you know that you are now in full ownership of my farm, Begonia Grove."
+        "The Letter" "This letter is to let you know that you now have full ownership of my farm, Begonia Grove."
         
-        "The Letter" "It’s not much, but it’s the only thing I have to give to my granddaughter. I hope that you can give it new life, and maybe even more than I could."
+        "The Letter" "It’s not much, but it’s the only thing I have left to offer you. I hope that you can give it new life — maybe even more than I could."
 
         "The Letter" "Sincerely, Grandpa"
         
-        "My breath caught in my throat for a moment upon finishing the letter. This was my chance, my opportunity to truly find a new meaning to my mundane life."
+        "My breath catches in my throat for a moment. This is a chance, a sign, an opportunity to find a new meaning to my mundane life."
 
         hide letter
         
-        "By the end of the night, all my belongings were packed and ready to go. It was time to start anew."
+        "By the end of the night, all of my belongings are packed and ready to go. It is time to start anew."
         
         jump chapter_one
 
@@ -94,56 +97,57 @@ label prologue:
 
         hide letter
         
-        "I tossed the letter in the trash and made my way back home."
+        "I toss the letter in the trash and make my way back home."
 
         # This ends the game.
         return
 
+
 label chapter_one:
     scene blank
 
-    show screen day_break("day zero")
+    show screen day_break("week one: sunday")
     pause
     hide screen day_break
 
-    "As I shut the door of the taxi behind me, my thoughts raced through my mind."
+    "As I shut the door of the taxi behind me, my thoughts race through my mind."
 
-    "What was the farm going to look like? What was I going to do on the farm? What was I doing? I don't know how to farm!"
+    "What is the farm going to look like? What am I going to do there? What am I doing? I don't know how to farm!"
 
     scene farm
                 
-    "The farm was a bit of a distance from where I had been dropped off. I took in my surroundings." 
+    "There is a long driveway up to the farm from the road where I have been dropped off. I take in my surroundings." 
             
-    "Begonias adorned every inch of the place. I supposed it was how the farm received its name."
+    "Red begonias adorn every inch of the place. I suppose that is how the farm received its name."
 
-    "After about 5 minutes of slow walking, I finally made it to the entrance to the farm."
+    "After a slow five minute walk, I finally made it to the entrance."
 
     show trudy-shock
     
-    "The gates creaked softly as I stepped past them, and the dirt on the ground caked around my shoes. There was an air of moodiness about the farm."
+    "The gates creak softly as I push past them, and the mud on the ground from a recent rain cakes around my shoes."
     
-    "The crops seemed to sink into the ground, while the few livestock wandered around hopelessly." 
+    "The sky hangs low on the horizon. The crops - for some reason, all carrots - sink into the ground, while the few livestock wander around aimlessly." 
     
-    "Old machinery collected dust and grime on the outskirts of the fields, broken and dilapidated."
+    "Old machinery sits on the outskirts of the fields, broken and dilapidated. I touch one, and my finger comes away with a buildup of dust and grime."
 
-    "I breathe in the country air. There was work to be done."
+    "I breathe in the country air. There is a lot of work to be done."
 
     label day_one:
         scene sunset
 
-        show screen day_break("day one")
+        show screen day_break("week one: monday")
         pause
         hide screen day_break
 
-        "The crowing of a lone rooster startled me awake."
+        "The crowing of a lone rooster startles me awake."
 
         show trudy-neutral
         
-        "It struck a chord inside me to hear something so raw in comparison to the industrial cacophony that I typically arose to."
+        "It strikes a chord inside me, strangely. Perhaps because of how raw the sounds is in comparison to the industrial cacophony that I typically rise to."
 
-        "I threw on a simple tee and work pants before heading down to the fields."
+        "I throw on a simple tee and work pants before heading down to the fields."
         
-        "I dedicated the rest of my life savings to fixing the farm - all $200 of the crumpled bills in my wallet."
+        "I am dedicating the rest of my life savings to fixing the farm - all $200 of the crumpled bills in my wallet."
         
         trudy "What should I start with today?"
 
@@ -155,28 +159,26 @@ label chapter_one:
 
         scene night
 
-        "I wiped the sweat from my brow and stretched out my sore joints."
+        "I wipe the sweat from my brow and stretch out my sore joints."
         
         trudy  "All in a day’s work!"
 
-        "As I shuffled back to my bed, I couldn’t help but feel uneasy, as if there was someone - or something - watching me."
+        "As I shuffle back to my bed, I can’t help but feel uneasy, as if there was someone - or something - watching me."
         
-        "I shook my head before slinking into the warmth of my blankets. It was probably nothing."
+        "I shake my head before slinking into the warmth of my blankets. It was probably nothing."
 
     label day_two:
         scene sunset
 
-        show screen day_break("day two")
+        show screen day_break("week one: tuesday")
         pause
         hide screen day_break
 
-        "The sun felt warm on my skin as it peeked through the thin linen blinds covering the windows."
+        "The sun feels warm on my skin as it peeks through the thin linen curtains covering the windows."
 
         show trudy-neutral
 
-        "I slept in today, still feeling a bit groggy from the previous day’s work."
-
-        "I checked my wallet to see how much money I had to work with. [money] dollars. Not bad. I’ll see what I can get done."
+        "I slept in today, still groggy from the previous day’s work."
 
         # mini game
         scene farm
@@ -186,100 +188,214 @@ label chapter_one:
 
         scene night
 
-        "Upon closing the gates of the barn, I felt a chill run down my spine as a gust of wind swept my hair upwards."
+        "A gust of wind rushes at me as I close the barn gates for the night. I feel a chill run down my spine."
         
-        "The petals of the begonias fluttered around me like a celebration of crimson."
+        "A shower of begonia petals flutter around me like a crimson celebration."
+
+        "I am torn between awe and the urge to hurry home."
         
         trudy "What a sight to behold."
 
     label day_three:
         scene sunset
 
-        show screen day_break("day three")
-        pause 
+        show screen day_break("week one: wednesday")
+        pause
         hide screen day_break
 
         "I awoke before the farm did this morning. It was still dark outside, but the fields called to me in a distant dream."
 
-        show trudy-neutral
+        show trudy-shock
         
-        "I count the money on my bedside table. [money] dollars. I’ve got a long day ahead."
+        "They said something about...hurrying. Hurry and tend to them. The fields are thirsty and waiting."
+        
+        "A shot of adrenaline invigorates me further."
 
         # mini game
         scene farm
         
-        show screen money_game("Sell carrots","Tend to livestock","Buy more chickens")
+        show screen money_game("Sell carrots","Water crops","Buy more chickens")
         pause
 
         scene night
 
-        "A wave of exhaustion passed through my body as I sat on a tipped over milking bucket."
+        "A wave of exhaustion passes through my body as I sit on a tipped over milking bucket."
 
-        "For a split second, the cows seemed to smile at me, almost if they were appreciating my hard work."
+        "For a split second, the cows seem to smile at me, almost if they were appreciating my hard work."
 
-        "I smiled back, knowing my labor was paying off."
+        "I smile back, patting one on the nose. Things are looking up."
 
     label day_four:
         scene sunset
 
-        show screen day_break("day four")
+        show screen day_break("week one: thursday")
         pause
         hide screen day_break
 
-        "The days were beginning to feel natural at this point."
+        "The days are beginning to feel natural. Running a farm is hard work, but honest and rewarding all the same."
 
         show trudy-happy
 
-        "From the chirping of the birds to the brightness of the sun in the mornings — for the first time in forever, I felt at home in a place where I belonged."
-
-        "I looked at my wallet, but I didn’t need to count the money. I knew I had [money] dollars from the day before."
+        "Everything here is beautiful, from the brightness of the morning sun to the crowing of the lone rooster."
 
         # mini game
         scene farm
         
-        show screen money_game("Sell eggs collected from chickens","Take a break","Buy better cow feed")
+        show screen money_game("Sell eggs collected from chickens","Tend to livestock","Buy better cow feed")
         pause
 
         scene night
 
-        "Looking at the farmscape, I grinned."
+        "Looking at the farmscape, I grin."
 
-        "Change was beginning to instill itself into the roots of the earth. I could feel a shift within myself, and I no longer hated being alone."
+        "For the first time in forever, I can see a future for myself."
 
     label day_five:
         scene sunset
 
-        show screen day_break("day five")
+        show screen day_break("week one: friday")
         pause
         hide screen day_break
 
-        "Energy coursed through my veins as things began to fall into routine."
-
         show trudy-happy
 
-        "I knew I had [money] dollars in savings. I just needed to figure out what to do with it."
+        "Energy courses through my veins. I never knew routine could feel this good."
 
         # mini game
         scene farm
         
-        show screen money_game("Sell carrots","Meet the neighbors","Give out free samples")
+        show screen money_game("Sell carrots","Take a break","Give out free samples")
         pause
 
         scene night
 
-        "I counted the money I had in my pocket. [money] dollars."
+        "I count the money I have in my pocket. [money] dollars."
 
         trudy "I can work with this."
 
-        "Tomorrow was the weekend. It was time to explore."
+        "Tomorrow is the weekend. It is time to explore."
 
     jump chapter_two
-    
+
+
 label chapter_two:
+    show screen day_break("week one: saturday")
+    pause
+    hide screen day_break
+
+    label kit:
+        scene blank
+
+        "It’s the first Saturday of the month, and I step outside to greet the fresh air."
+
+        scene farm
+
+        "Past the hill, in the distance, I see a person standing near the gate."
+
+        "I go out to welcome them."
+
+        show trudy-happy:
+            xalign 0.25
+            yalign 1.0
+
+        trudy "Hello! Who might you be?"
+
+        show kit:
+            xalign 0.75
+            yalign 1.0
+
+        bis "Biscuit Crossaint, but you can call me Kit. I live next door - it's good to finally meet you!"
+
+        "Kit is incredibly bubbly and happy to see me."
+
+        menu:
+            "{i}I like her immediately.{/i}":
+                jump kit_good
+
+            "{i}It's too early to deal with this much energy.{/i}":
+                jump kit_bad
+
+            "Go away.":
+                jump chapter_three
+
+        label kit_good:
+            trudy "Nice to meet you too! What brings you around?"
+
+            bis "Today's market day down in the town. Everybody in the county will be there and it's my neighborly duty to invite you along!"
+        
+            bis "Do you have anything you want to sell? I’ll have flower infused honey and baked treats at my stand."
+
+            "I have a seemingly neverending supply of carrots. This is the perfect opportunity to get rid of them!"
+
+            trudy "Of course!"
+
+            scene blank
+
+            "Kit and I walk to the market and chat about my move from the city."
+
+            "We part ways at the town square to set up out own stalls. I promise to find them later for a free cookie."
+
+            jump aubrey
+
+        label kit_bad:
+            hide trudy-happy
+            show trudy-neutral:
+                xalign 0.25
+                yalign 1.0
+
+            trudy "What do you want."
+
+            "Kit hesitates."
+
+            bis "Today's market day down in the town. Everybody in the county will be there and it's my neighborly duty to invite you along!"
+        
+            bis "Do you have anything you want to sell? I’ll have flower infused honey and baked treats at my stand."
+
+            "I have a seemingly neverending supply of carrots. This is the perfect opportunity to get rid of them!"
+
+            trudy "Sure."
+
+            scene blank
+
+            "Kit and I walk to the market in silence. Although I prefer it, Kit seems to find it awkward."
+
+            "We part ways at the town square to set up out own stalls."
+
+            jump aubrey
+
+    label aubrey:
+
+
+    label zach:
+
+    label dan:
+
     jump chapter_three
 
+
 label chapter_three:
+    show screen day_break("a sneak peak")
+    pause
+    hide screen day_break
+
+    scene farm
+    show trudy-wink:
+        xalign 0.25
+        yalign 1.0
+    show dan:
+        xalign 0.75
+        yalign 1.0
+    
+    scene blank
+    show trudy-shock
+    hide trudy-shock
+
+    show screen day_break("more to come...")
+    pause
+    hide screen day_break
+
     return
+
 
 # Displays before each day
 screen day_break(day):
@@ -289,6 +405,7 @@ screen day_break(day):
         xalign 0.5
         yalign 0.5
         text day
+
 
 # Money decision mini-game
 screen money_game(plus, zero, minus):
@@ -305,10 +422,12 @@ screen money_game(plus, zero, minus):
             textbutton minus xalign 0.5 yalign 0.5:
                 action [Hide("money_game"), Call("sub_money", 50)]
 
+
 # Updates money variable
 label add_money(x):
     $ money += x
     return
+
 
 label sub_money(x):
     $ money -= x
