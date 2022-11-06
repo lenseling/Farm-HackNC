@@ -127,6 +127,8 @@ label prologue:
 # Chapter One: Trudy finds Begonia Grove in a state of disrepair. 
 
 label chapter_one:
+    play music "/audio/mystery.mp3"
+
     scene blank
 
     show screen day_break("week one: sunday")
@@ -179,6 +181,12 @@ label chapter_one:
         "I am dedicating the rest of my life savings to fixing the farm - all $200 of the crumpled bills in my wallet."
         
         trudy "What should I tackle first?"
+
+        # mini game tutorial
+        scene blank
+        show screen money_game_exp()
+        pause
+        hide screen money_game_exp
 
         # mini game
         call money_money
@@ -279,6 +287,8 @@ label chapter_one:
 # Chapter Two: On the first Saturday of the month, a neighbor invites Trudy to the town market. Meet the fascinating characters surrounding Begonia Grove!
 
 label chapter_two:
+    stop music fadeout 1
+
     call begin_day("week one: saturday")
 
     # Meet Biscuit 'Kit' Croissant. Bubbly, energetic, sweet – and our next door neighbor!
@@ -556,6 +566,8 @@ label chapter_two:
 
     "From my farmhouse at the top of the hill, I gaze at the rolling fields below."
 
+    play music "audio/mystery.mp3" fadeout 1
+
     scene night
 
     "Nestled in scattered crooks and crannies throughout the countryside, warm little lights flicker in the hearths of tiny, distant homes."
@@ -585,7 +597,7 @@ label chapter_two:
 
 label chapter_three:
     label wk2_d0:
-        call begin_day("week one: sunday")
+        call begin_day("week two: sunday")
         show trudy-happy
 
         "That was a nice break. Let's get back into it!"
@@ -598,7 +610,7 @@ label chapter_three:
         call end_day
 
     label wk2_d1:
-        call begin_day("week one: monday")
+        call begin_day("week two: monday")
         # mini game
         call money_money
 
@@ -615,7 +627,7 @@ label chapter_three:
         call end_day
 
     label wk2_d2:
-        call begin_day("week one: tuesday")
+        call begin_day("week two: tuesday")
         show trudy-shock
 
         trudy "Another dream last night...I was lying in a flower field, begonias as far as eye could see."
@@ -631,7 +643,7 @@ label chapter_three:
         call end_day
 
     label wk2_d3:
-        call begin_day("week one: wednesday")
+        call begin_day("week two: wednesday")
         show trudy-happy
 
         "Rise and shine!"
@@ -644,7 +656,7 @@ label chapter_three:
         call end_day
 
     label wk2_d4:
-        call begin_day("week one: thursday")
+        call begin_day("week two: thursday")
         show trudy-happy
 
         "Rise and shine!"
@@ -657,7 +669,7 @@ label chapter_three:
         call end_day
 
     label wk2_d5:
-        call begin_day("week one: friday")
+        call begin_day("week two: friday")
         show trudy-happy
 
         "Energy courses through my veins. I never knew routine could feel this good."
@@ -810,6 +822,26 @@ label money_money:
     return
 
 
+# Short explanation of the money mini-game
+screen money_game_exp:
+    hbox:
+        spacing(20)
+        text "      "
+        vbox:
+            box_wrap True
+            spacing(40)
+            text ""
+
+            text "Each day you have a choice between three actions: sell (for immediate profit), improve (happy farm happy life), or buy (chance your best guess at future gain!)\n"
+
+            text "Any action you make will impact not only the amount of money you have, but also the happiness of one or more elements of your farm.\n"
+        
+            text "The bank will take your farm away if you go bankrupt – but make sure not to neglect the creatures on your farm either.\n"
+
+            text "Foreclosure is not the worst thing that can happen to you in Begonia Grove.\n"
+        text "      "
+
+
 # Money decision mini-game screen
 # If user chooses plus option, add appropriate amount to money
 # If user chooses zero option, adjust appropriate plus items
@@ -823,7 +855,7 @@ screen money_game(p, z, m):
             vbox:
                 spacing 50
                 textbutton plus[p][0] xalign 0.5 yalign 0.5:
-                    action [Hide("money_game"), Call("set_from_plus", plus[p][1])]
+                    action [Hide("money_game"), Call("set_from_plus", p)]
                 textbutton zero[z][0] xalign 0.5 yalign 0.5:
                     action [Hide("money_game"), Call("set_from_zero", z)]
                 textbutton minus[m][0] xalign 0.5 yalign 0.5:
@@ -840,8 +872,13 @@ screen money_game(p, z, m):
 
 
 # Updates variable from money_game. Return to call block.
-label set_from_plus(x):
-    $ money += x
+label set_from_plus(p):
+    if p == 1:
+        $ money += plus[p][1] * 3 * chicken_mood
+    elif p == 2:
+        $ money += plus[p][1] * 3 * cow_mood
+    else:
+        $ money += plus[p][1] * 2.5 * carrot_mood
     return
 
 # Adjust appropriate plus amounts. If fix machine or fertilize crops, make false. Update mood.
@@ -853,6 +890,13 @@ label set_from_zero(z):
     $ chicken_mood += zero[z][1]/5
     $ cow_mood += zero[z][2]/5
     $ carrot_mood += zero[z][3]/5
+
+    if chicken_mood > 4:
+        $ chicken_mood = 4
+    if cow_mood > 4:
+        $ cow_mood = 4
+    if carrot_mood > 4:
+        $ carrot_mood = 4
 
     if z == 3:
         $ zero[3][4] = False

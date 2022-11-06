@@ -182,6 +182,12 @@ label chapter_one:
         
         trudy "What should I tackle first?"
 
+        # mini game tutorial
+        scene blank
+        show screen money_game_exp()
+        pause
+        hide screen money_game_exp
+
         # mini game
         call money_money from _call_money_money
 
@@ -816,6 +822,26 @@ label money_money:
     return
 
 
+# Short explanation of the money mini-game
+screen money_game_exp:
+    hbox:
+        spacing(20)
+        text "      "
+        vbox:
+            box_wrap True
+            spacing(40)
+            text ""
+
+            text "Each day you have a choice between three actions: sell (for immediate profit), improve (happy farm happy life), or buy (chance your best guess at future gain!)\n"
+
+            text "Any action you make will impact not only the amount of money you have, but also the happiness of one or more elements of your farm.\n"
+        
+            text "The bank will take your farm away if you go bankrupt – but make sure not to neglect the creatures on your farm either.\n"
+
+            text "Foreclosure is not the worst thing that can happen to you in Begonia Grove.\n"
+        text "      "
+
+
 # Money decision mini-game screen
 # If user chooses plus option, add appropriate amount to money
 # If user chooses zero option, adjust appropriate plus items
@@ -848,11 +874,11 @@ screen money_game(p, z, m):
 # Updates variable from money_game. Return to call block.
 label set_from_plus(p):
     if p == 1:
-        $ money += plus[p][1] * 5 * chicken_mood
+        $ money += plus[p][1] * 3 * chicken_mood
     elif p == 2:
-        $ money += plus[p][1] * 5 * cow_mood
+        $ money += plus[p][1] * 3 * cow_mood
     else:
-        $ money += plus[p][1] * 3 * carrot_mood
+        $ money += plus[p][1] * 2.5 * carrot_mood
     return
 
 # Adjust appropriate plus amounts. If fix machine or fertilize crops, make false. Update mood.

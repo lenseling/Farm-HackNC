@@ -2,17 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 858: expected statement.
-    chicken_mood = 5
-                 ^
-
-File "game/script.rpy", line 860: expected statement.
-    cow_mood = 5
+File "game/script.rpy", line 828: expected a keyword argument or end of line.
+    box_wrap = True
              ^
 
-File "game/script.rpy", line 862: expected statement.
-    carrot_mood = 5
-                ^
-
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sun Nov  6 08:36:28 2022
+Sun Nov  6 10:18:51 2022
