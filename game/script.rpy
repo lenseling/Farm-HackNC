@@ -3,9 +3,9 @@
 # Declare characters used by this game. The color argument colorizes the name of the character.
 
 define trudy = Character("[name]")
-define aub = Character("Aubrey Jenes")
+define aub = Character("Aubrey Jene")
 define bis = Character("Biscuit 'Kit' Croissant")
-define cou = Character("Cheval Chourgette")
+define cou = Character("Cheval 'Zach' Chourgette")
 define dan = Character("Dan Immals")
 
 define money = 200
@@ -116,7 +116,7 @@ label chapter_one:
 
     scene farm
                 
-    "There is a long driveway up to the farm from the road where I have been dropped off. I take in my surroundings." 
+    "There is a long driveway up a hill to the farm from the road where I have been dropped off. I take in my surroundings." 
             
     "Red begonias adorn every inch of the place. I suppose that is how the farm received its name."
 
@@ -192,7 +192,7 @@ label chapter_one:
         
         "A shower of begonia petals flutter around me like a crimson celebration."
 
-        "I am torn between awe and the urge to hurry home."
+        "I am torn between awestruck appreciation and the urge to hurry home."
         
         trudy "What a sight to behold."
 
@@ -203,7 +203,7 @@ label chapter_one:
         pause
         hide screen day_break
 
-        "I awoke before the farm did this morning. It was still dark outside, but the fields called to me in a distant dream."
+        "I wake up before the farm this morning. It is still dark outside, but the fields called to me in a distant dream."
 
         show trudy-shock
         
@@ -273,8 +273,6 @@ label chapter_one:
 
         trudy "I can work with this."
 
-        "Tomorrow is the weekend. It is time to explore."
-
     jump chapter_two
 
 
@@ -283,7 +281,7 @@ label chapter_two:
     pause
     hide screen day_break
 
-    label kit:
+    label meet_kit:
         scene blank
 
         "It’s the first Saturday of the month, and I step outside to greet the fresh air."
@@ -304,7 +302,7 @@ label chapter_two:
             xalign 0.75
             yalign 1.0
 
-        bis "Biscuit Crossaint, but you can call me Kit. I live next door - it's good to finally meet you!"
+        bis "Biscuit Crossaint, Kit for short. I live next door - it's good to finally meet you!"
 
         "Kit is incredibly bubbly and happy to see me."
 
@@ -333,9 +331,9 @@ label chapter_two:
 
             "Kit and I walk to the market and chat about my move from the city."
 
-            "We part ways at the town square to set up out own stalls. I promise to find them later for a free cookie."
+            "We part ways at the bustling town square to set up our own stalls. I promise to find them later for a sample of their famous begonia honey."
 
-            jump aubrey
+            jump meet_aubrey
 
         label kit_bad:
             hide trudy-happy
@@ -359,22 +357,214 @@ label chapter_two:
 
             "Kit and I walk to the market in silence. Although I prefer it, Kit seems to find it awkward."
 
-            "We part ways at the town square to set up out own stalls."
+            "We part ways at the bustling town square to set up our own stalls."
 
-            jump aubrey
+            jump meet_aubrey
 
-    label aubrey:
+    label meet_aubrey:
+        "My first customer arrives within minutes."
 
+        scene farm # market
 
-    label zach:
+        show aubrey:
+            xalign 0.75
+            yalign 1.0
 
-    label dan:
+        "A tall woman with aubergine hair saunters over. She sneers at my carrots."
+
+        aub "And you are?"
+
+        show trudy-shock:
+            xalign 0.25
+            yalign 1.0
+
+        menu:
+            "{i}I'm scared.{/i}":
+                jump aub_bad
+            "{i}I refuse to back down.{/i}":
+                jump aub_good
+            "{i}I'm too stunned to speak.{/i}":
+                "The woman looks me up and down and scoffs, unimpressed."
+
+                "?" "Well I clearly don't have to worry about {i}you{/i}."
+
+                jump zach_aub_bad
+
+        label aub_good:
+            hide trudy-shock
+            show trudy-neutral:
+                xalign 0.25
+                yalign 1.0
+            
+            "I push back my shoulders and look her evenly in the eye."
+            
+            trudy "I'm [name]. And you?"
+            
+            aub "[name]...The Begonia girl, yes? Aubrey Jene. Pleasure."
+            
+            aub "Listen up, new girl. I like you. There's a lot of things you don't know about this town. Don't get cocky."
+
+            "She starts to walk away, then pauses and turns back."
+
+            aub "And don't you dare think you can usurp me at the county fair."
+
+            jump zach_aub_good
+            
+        label aub_bad:
+            trudy "I-I’m [name]. I-I’m pretty new around these parts, I’ve been here for about a week."
+
+            "?" "Excuse me? Speak up, will you. Whatever."
+
+            aub "Listen up, new girl. My name is Aubrey Jene and I've won the county fair for three years running. Don’t try and steal my thunder."
+
+            trudy "..."
+
+            "Aubry rolls her eyes and stalks away in her red cowboy boots."
+
+            jump zach_aub_bad
+
+    label zach_aub_good:
+        hide aubrey
+
+        "I breathe out a sigh of relief. As I gaze at her retreating form, I catch the eye of a young man in the crowd."
+
+        "?" "Quite impressive, darling, quite impressive indeed. Why, I haven't seen someone go toe to toe with Aubrey Jene in...I can't recall!"
+
+        jump meet_zach
+
+    label zach_aub_bad:
+        hide aubrey
+
+        "I let out a shuddering sigh and look into the crowd of people. There is a young man gazing back at me sympathetically."
+
+        "?" "Oh, dear. [name], was it? We're sorry about her, she's always like that."
+
+        "I smile back at him, relieved to meet a friendlier face."
+
+        jump meet_zach
+
+    label meet_zach:
+        show zach:
+            xalign 0.75
+            yalign 1.0
+
+        "?" "The name's Chourgette. Cheval Chourgette. Pleasure to meet your aquaintance."
+
+        "I take a closer look at him. He's clean shaven, with high, aristocratic features."
+        
+        "Although his clothes look about the same cut as everyone else's, they are clearly newer and made of a silken material that shimmers subtly as he moves."
+
+        menu:
+            "Where'd you get your shirt?":
+                "Chourgette beams, then abortedly tries to wink. The result is unexpectedly hilarious."
+
+                "Chourgette" "Family secret, I'm afraid. But for you...stop by my estate someday. We ride horses. I'll give you the tour."
+
+                "Chourgette" "Also, Zach is fine."
+
+                jump meet_zach_2
+            "...Chourgette? Like the vegetable?":
+                "Chourgette" "We're French! You can call me Zach, though."
+
+                "Chourgette winks."
+
+                jump meet_zach_2
+            "Nice to meet you, Cheval Chourgette.":
+                "He makes a slight pout."
+
+                "Chourgette" "Zach is fine, too."
+
+                jump meet_zach_2
+
+    label meet_zach_2:
+        cou "Anywho, so good to see a new face in town. How are you settling in?"
+
+        trudy "I'm doing great. I've made some real progress on the farm this week!"
+
+        cou "Wonderful, wonderful. Could I get two of those carrots? They look mighty fine."
+
+        "I hand Zach the two best carrots on my stand. Zach motions to a man behind him - a servant of some sort - to hand him his wallet."
+
+        cou "Cash. Quaint, isn't it."
+
+        "He sounds distracted. When I try to take the money from his outstretched hand, he leans in, refusing to let go."
+
+        "I tug at it, but he continues to stare intently into my eyes. Finally, he seems to startle."
+
+        cou "Yes, wonderful to hear, indeed."
+
+        cou "We will meet again, [name]."
+
+        "Zach turns and walks away with brisk strides, his previously unseen servants trailing behind him."
+
+        "I think I catch a flash of an emotion - disappointment? relief? sorrow? or perhaps something darker - on his face as he vanishes into the crowd."
+
+        hide zach
+
+        trudy "How strange..."
+
+    label meet_dan:
+        "While I'm still pondering the strange interaction, another man appears at my stand."
+
+        show dan:
+            xalign 0.75
+            yalign 1.0
+
+        "I jump in surprise."
+
+        "?" "Hello, could I have some carrots?"
+
+        trudy "Sure. I didn’t catch your name?"
+
+        dan "It’s Dan. Nice to meet you."
+
+        trudy "Nice to meet you as well. Enjoy the carrots!"
+
+        "Dan nods. When I look up from counting out his change, he seems to have disappeared."
+
+        hide dan
+
+    scene sunset
+
+    show trudy-neutral
+
+    trudy "What an interesting town."
+
+    "A strong wind blows in from north and the shed door clatters in agreement."
+
+    trudy "Isn't it a tad too cold for the middle of summer?"
+
+    "From my farmhouse at the top of the hill, I gaze at the rolling fields below."
+
+    scene night
+
+    "Nestled in scattered crooks and crannies throughout the countryside, warm little lights flicker in the hearths of tiny, distant homes."
+
+    trudy "So beautiful..."
+
+    "Kit had pointed out all the houses to me on our way back from the market."
+    
+    "There, far to the north, bordering the Red Woods, is the Chourgette estate."
+
+    "The closest farm to the east is Immals Ranch, famous mostly for the tragic disappearance of their son years earlier."
+
+    "To the west, the Aubergine Vineyard stands proud as the most prominent exporter in the county, having made a remarkable recovery from the brink of bankruptcy."
+
+    "A cluster of brighter lights due north of the ranch marks the town, like a guiding star."
+
+    show trudy-happy
+
+    trudy "Strange as it is, I think I could grow to love this place."
+
+    "A whistling gust of wind kicks up a shower of begonia petals, sounding like high, wild laughter."
 
     jump chapter_three
 
 
 label chapter_three:
-    show screen day_break("a sneak peak")
+    scene blank
+
+    show screen day_break("Thank you for playing our demo :D.")
     pause
     hide screen day_break
 
@@ -382,15 +572,8 @@ label chapter_three:
     show trudy-wink:
         xalign 0.25
         yalign 1.0
-    show dan:
-        xalign 0.75
-        yalign 1.0
-    
-    scene blank
-    show trudy-shock
-    hide trudy-shock
 
-    show screen day_break("more to come...")
+    show screen day_break("To read more, please consider supporting the team!")
     pause
     hide screen day_break
 
