@@ -1,93 +1,103 @@
 ﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+# Declare characters used by this game. The color argument colorizes the name of the character.
 
 define trudy = Character("[name]")
+define aub = Character("Aubrey Jenes")
+define bis = Character("Biscuit 'Kit' Croissant")
+define cou = Character("Cheval Chourgette")
+define dan = Character("Dan Immals")
+
+define money = 200
 
 # The game starts here.
 
 label start:
-    $ money = 200
-
     call prologue
 
-    # This ends the game.
     return
 
 label prologue:
-        scene room
+    scene room
 
-        "Beep-beep-beep! The incessant honking outside my window wakes me from my slumber. It wasn’t like I got much sleep anyways."
+    "Beep-beep-beep! The incessant honking outside my window wakes me from my slumber. It wasn’t like I got much sleep anyways."
 
-        "The cloud cover is thick today. A sense of heaviness fills the atmosphere, almost choking me."
+    "The cloud cover is thick today. A sense of heaviness fills the atmosphere, almost choking me."
 
-        "It felt like every other day that I had lived in the past 28 years of my life; however the numbness of routine had already settled in my bones."
+    "It felt like every other day that I had lived in the past 28 years of my life; however the numbness of routine had already settled in my bones."
 
-        show trudy-neutral
+    show trudy-neutral
 
-        "Bringing myself to my desk was easier said than done. The brightness of the screen seared my eyes as I glazed over the emails piling up in my inbox." 
+    "Bringing myself to my desk was easier said than done. The brightness of the screen seared my eyes as I glazed over the emails piling up in my inbox." 
+    
+    "Nothing new, nothing interesting. Just advertisements and spam messages galore." 
+    
+    "I’d already given up on expecting emails back from job applications – I never knew why I still kept a sliver of hope left in my chest."
+
+    "I decided to take a walk to clear my head. Though the air was smoggy and suffocating, it felt better than the apartment walls surrounding me."
+
+    scene street
+
+    show trudy-neutral:
+        xalign 0.25
+        yalign 1.0
+
+    "Jogging always felt like the only times I could truly be free. With the music pounding in my ears and the wind flowing through my hair, I felt boundless and featherlight." 
+    
+    "Looking at the nicely trimmed bushes lining the sidewalk, I took a deep breath in." 
+    
+    "I’d always wondered how it would be like to fit in. Loneliness was more of a circumstance than a choice at this point."
+
+    "My jogging route took me to the post office, where I rarely stopped by. I had no reason to, as I kept to myself for the most part."
+    
+    "The occasional package was sent to me, but nothing worth checking for."
+
+    "Upon opening my P.O. box, I noticed a slightly crumpled letter. It was the only thing in the small box, and I gently took it out to observe it."
+    
+    show letter:
+        xalign 0.75
+        yalign 1.0
+
+    python:
+        name = renpy.input("On the envelope was my name in elegant handwriting: To ")
+        name = name.strip() or "Trudy"
+
+    "My brows furrowed in confusion. Who could it be from?"
+
+    menu:
+        "Open the envelope":
+            jump choice_open
+
+        "Ignore":
+            jump choice_ignore
+    
+    label choice_open:
+
+        "The Letter" "Dear [name], if this letter has found you, I have already made my way into the afterlife. I know we never talked much, but you are the only person I believe I can truly trust." 
         
-        "Nothing new, nothing interesting. Just advertisements and spam messages galore." 
+        "The Letter" "This letter is to let you know that you are now in full ownership of my farm, Begonia Grove."
         
-        "I’d already given up on expecting emails back from job applications – I never knew why I still kept a sliver of hope left in my chest."
+        "The Letter" "It’s not much, but it’s the only thing I have to give to my granddaughter. I hope that you can give it new life, and maybe even more than I could."
 
-        "I decided to take a walk to clear my head. Though the air was smoggy and suffocating, it felt better than the apartment walls surrounding me."
-
-        scene street
-
-        show trudy-neutral
-
-        "Jogging always felt like the only times I could truly be free. With the music pounding in my ears and the wind flowing through my hair, I felt boundless and featherlight." 
+        "The Letter" "Sincerely, Grandpa"
         
-        "Looking at the nicely trimmed bushes lining the sidewalk, I took a deep breath in." 
+        "My breath caught in my throat for a moment upon finishing the letter. This was my chance, my opportunity to truly find a new meaning to my mundane life."
+
+        hide letter
         
-        "I’d always wondered how it would be like to fit in. Loneliness was more of a circumstance than a choice at this point."
-
-        "My jogging route took me to the post office, where I rarely stopped by. I had no reason to, as I kept to myself for the most part."
+        "By the end of the night, all my belongings were packed and ready to go. It was time to start anew."
         
-        "The occasional package was sent to me, but nothing worth checking for."
+        jump chapter_one
 
-        "Upon opening my P.O. box, I noticed a slightly crumpled letter. It was the only thing in the small box, and I gently took it out to observe it."
+    label choice_ignore:
+        trudy "Just junk."
 
-        show letter
-
-        python:
-            name = renpy.input("On the envelope was my name in elegant handwriting: To ")
-            name = name.strip() or "Trudy"
-
-        "My brows furrowed in confusion. Who could it be from?"
-
-        menu:
-            "Open the envelope":
-                jump choice_open
-
-            "Ignore":
-                jump choice_ignore
+        hide letter
         
-        label choice_open:
+        "I tossed the letter in the trash and made my way back home."
 
-            "The Letter" "Dear [name], if this letter has found you, I have already made my way into the afterlife. I know we never talked much, but you are the only person I believe I can truly trust." 
-            
-            "The Letter" "This letter is to let you know that you are now in full ownership of my farm, Begonia Grove."
-            
-            "The Letter" "It’s not much, but it’s the only thing I have to give to my granddaughter. I hope that you can give it new life, and maybe even more than I could."
-
-            "The Letter" "Sincerely, Grandpa"
-            
-            "My breath caught in my throat for a moment upon finishing the letter. This was my chance, my opportunity to truly find a new meaning to my mundane life."
-            
-            "By the end of the night, all my belongings were packed and ready to go. It was time to start anew."
-            
-            jump chapter_one
-
-        label choice_ignore:
-            trudy "Just junk."
-            
-            "I tossed the letter in the trash and made my way back home."
-
-            # This ends the game.
-            return
+        # This ends the game.
+        return
 
 label chapter_one:
     scene blank
@@ -116,7 +126,7 @@ label chapter_one:
     
     "Old machinery collected dust and grime on the outskirts of the fields, broken and dilapidated."
 
-    "I took a breath in. There was work to be done."
+    "I breathe in the country air. There was work to be done."
 
     label day_one:
         scene farm
@@ -137,7 +147,11 @@ label chapter_one:
         
         trudy "What should I start with today?"
 
-        # TODO: mini game
+        # mini game
+        scene farm
+
+        show screen money_game("Sell eggs collected from chickens","Fix machinery","Buy fertilizer")
+        pause
 
         "I wiped the sweat from my brow and stretched out my sore joints."
         
@@ -162,7 +176,11 @@ label chapter_one:
 
         "I checked my wallet to see how much money I had to work with. [money] dollars. Not bad. I’ll see what I can get done."
 
-        # TODO: mini game
+        # mini game
+        scene farm
+
+        show screen money_game("Sell milk collected from cows","Weed crops","Buy new machinery parts")
+        pause
 
         "Upon closing the gates of the barn, I felt a chill run down my spine as a gust of wind swept my hair upwards."
         
@@ -183,7 +201,11 @@ label chapter_one:
         
         "I count the money on my bedside table. [money] dollars. I’ve got a long day ahead."
 
-        # TODO: mini game
+        # mini game
+        scene farm
+        
+        show screen money_game("Sell carrots","Tend to livestock","Buy more chickens")
+        pause
 
         "A wave of exhaustion passed through my body as I sat on a tipped over milking bucket."
 
@@ -206,7 +228,11 @@ label chapter_one:
 
         "I looked at my wallet, but I didn’t need to count the money. I knew I had [money] dollars from the day before."
 
-        # TODO: mini game
+        # mini game
+        scene farm
+        
+        show screen money_game("Sell eggs collected from chickens","Take a break","Buy better cow feed")
+        pause
 
         "Looking at the farmscape, I grinned."
 
@@ -225,7 +251,11 @@ label chapter_one:
 
         "I knew I had [money] dollars in savings. I just needed to figure out what to do with it."
 
-        # TODO: mini game
+        # mini game
+        scene farm
+        
+        show screen money_game("Sell carrots","Meet the neighbors","Give out free samples")
+        pause
 
         "I counted the money I had in my pocket. [money] dollars."
 
@@ -233,7 +263,7 @@ label chapter_one:
 
         "Tomorrow was the weekend. It was time to explore."
 
-        jump chapter_two
+    jump chapter_two
     
 label chapter_two:
     jump chapter_three
@@ -241,6 +271,7 @@ label chapter_two:
 label chapter_three:
     return
 
+# Displays before each day
 screen day_break(day):
     frame:
         xpadding 50
@@ -248,3 +279,28 @@ screen day_break(day):
         xalign 0.5
         yalign 0.5
         text day
+
+# Money decision mini-game
+screen money_game(plus, zero, minus):
+    frame:
+        xalign 0.5 yalign 0.25
+        textbutton plus:
+            action [Hide("money_game"), Call("add_money", 50)]
+    frame:
+        xalign 0.5 yalign 0.5
+        textbutton zero:
+            action Hide("money_game")
+    frame:
+        xalign 0.5 yalign 0.75
+        textbutton minus:
+            action [Hide("money_game"), Call("sub_money", 50)]
+
+# Updates money variable
+label add_money(x):
+    $ money += x
+    return
+
+label sub_money(x):
+    $ money -= x
+    return
+
