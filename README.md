@@ -4,7 +4,7 @@ The Team: Lili E, Ruth W, Ruiyi D
 
 ## What is Begonia Grove?
 
-Begonia Grove is a heartfelt, coming of age visual novel constructed completely in the engine Ren'Py. For those unfamiliar with Ren'Py, it utilizes python scripting to create interactive experiences. Play the game by downloading the zip file or open link here:
+Begonia Grove is a heartfelt, coming of age visual novel constructed completely in the engine Ren'Py. For those unfamiliar with Ren'Py, it utilizes python scripting to create interactive experiences. Play the game by downloading the zip file.
 
 ## Synopsis
 
